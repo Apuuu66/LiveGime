@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         int[][] initArray = init();
-        //xecute(initArray);
         boolean state = true;
         int i = 0;
 
@@ -30,10 +29,13 @@ public class Main {
     public static void print(int result[][]) {
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[0].length; j++) {
-                System.out.print(result[i][j] + " ");
+                if (result[i][j]==1)
+                    System.out.print("*");
+                else System.out.print("-");
             }
-            System.out.println();
         }
+        System.out.println();
+
     }
 
     public static int[][] init() {
@@ -41,12 +43,14 @@ public class Main {
 //        int array[][] = {{0, 0, 0}, {1, 1, 1}, {0, 0, 0}};
 //        int array[][] = {{0, 0, 0}, {1, 0, 1}, {1, 0, 0}};
 //        int array[][] = {{0, 1, 0}, {1, 1, 1}, {0, 1, 0}};
+
         Scanner in = new Scanner(System.in);
-        System.out.print("请输入维数:");
-        int n = in.nextInt();
+        System.out.print("请输入行列数:");
+        int m = in.nextInt();
+        int n=in.nextInt();
         System.out.println("输入各细胞状态，0表示生,1表示死");
-        int[][] array = new int[n][n];
-        for (int i = 0; i < n; i++) {
+        int[][] array = new int[m][n];
+        for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 array[i][j] = in.nextInt();
             }
