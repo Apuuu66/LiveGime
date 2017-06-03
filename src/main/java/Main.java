@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 /**
  * Created by Snoopy on 2017/6/3.
@@ -5,12 +6,25 @@
 public class Main {
     public static void main(String[] args) {
         int[][] initArray = init();
-        execute(initArray);
+        //xecute(initArray);
+        boolean state = true;
+        int i = 0;
+
+        while (state) {
+            int[][] result = execute(initArray);
+            initArray = result;
+            System.out.println();
+            i++;
+            if (i > 5) {
+                state = false;
+            }
+        }
     }
 
-    public static void execute(int initArray[][]) {
+    public static int[][] execute(int initArray[][]) {
         int[][] result = handle(initArray);
         print(result);
+        return result;
     }
 
     public static void print(int result[][]) {
@@ -23,8 +37,20 @@ public class Main {
     }
 
     public static int[][] init() {
-        //int array[][] = {{0, 0, 0}, {1, 1, 1}, {0, 0, 0}};
-        int array[][] = {{1, 0, 1}, {0, 1, 0}, {1, 0, 1}};
+//        int array[][] = {{1, 0, 1}, {0, 1, 0}, {1, 0, 1}};
+//        int array[][] = {{0, 0, 0}, {1, 1, 1}, {0, 0, 0}};
+//        int array[][] = {{0, 0, 0}, {1, 0, 1}, {1, 0, 0}};
+//        int array[][] = {{0, 1, 0}, {1, 1, 1}, {0, 1, 0}};
+        Scanner in = new Scanner(System.in);
+        System.out.print("请输入维数:");
+        int n = in.nextInt();
+        System.out.println("输入各细胞状态，0表示生,1表示死");
+        int[][] array = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                array[i][j] = in.nextInt();
+            }
+        }
         return array;
     }
 
@@ -66,11 +92,5 @@ public class Main {
             return oldState;
         else
             return 0;
-    }
-
-
-    public static int cellCount(int[][] array) {
-        int count = 0;
-        return count;
     }
 }
